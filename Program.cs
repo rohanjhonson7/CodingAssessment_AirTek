@@ -1,5 +1,6 @@
 ﻿using CodingAssessmentConsoleApp.Services;
 using Newtonsoft.Json.Linq;
+using System.Reflection;
 using System.Xml.Linq;
 
 namespace SpeedyAir
@@ -98,7 +99,9 @@ namespace SpeedyAir
             JObject orders = null;
             try
             {
-                using (StreamReader r = new StreamReader("C:\\Users\\Marvin\\Downloads\\coding-assigment-orders.json"))
+                string projectDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+
+                using (StreamReader r = new StreamReader(projectDirectory+ "//coding-assigment-orders.json"))
                 {
                     string json = r.ReadToEnd();
                     orders = JObject.Parse(json);
